@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elio Pagliarani – Vita, Poetica e Opere</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root {
+      --bg: #07111f;
+      --bg2: #0f172a;
+      --card: rgba(255,255,255,0.08);
+      --glass: rgba(255,255,255,0.12);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #f59e0b;
+      --accent2: #38bdf8;
+      --radius: 24px;
+      --shadow: 0 10px 35px rgba(0,0,0,0.35);
+      --border: rgba(255,255,255,0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, #172554 0%, transparent 30%),
+        radial-gradient(circle at bottom right, #0f766e 0%, transparent 25%),
+        linear-gradient(135deg, #020617, #0f172a);
+
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    section {
+      padding: 7rem 8%;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 60%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: min(92%, 900px);
+
+      z-index: 999;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 1rem 1.4rem;
+
+      background: rgba(15,23,42,0.72);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+
+      border-radius: 999px;
+
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.4rem;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      transition: .3s ease;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: .3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    #menuToggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(rgba(2,6,23,.75), rgba(2,6,23,.85)),
+        url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f') center/cover;
+
+      transform: scale(1.08);
+      z-index: -1;
+    }
+
+    .hero {
+      max-width: 900px;
+      animation: fadeUp 1s ease;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: .95;
+      margin-bottom: 1.4rem;
+
+      background: linear-gradient(90deg, white, #fbbf24, #7dd3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 700px;
+      margin-inline: auto;
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 2rem;
+
+      padding: 1rem 1.8rem;
+
+      border-radius: 999px;
+
+      border: none;
+      cursor: pointer;
+
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+
+      box-shadow: var(--shadow);
+
+      transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(56,189,248,.25);
+    }
+
+    /* CARD */
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+
+      padding: 2rem;
+      border-radius: var(--radius);
+
+      backdrop-filter: blur(14px);
+
+      transition:
+        transform .4s ease,
+        background .4s ease,
+        border .4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,.11);
+      border-color: rgba(255,255,255,.2);
+    }
+
+    /* TIMELINE */
+
+    .timeline {
+      background: rgba(255,255,255,.03);
+      padding: 3rem;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+
+      position: relative;
+      margin-top: 3rem;
+      padding-left: 2rem;
+      border-left: 2px solid rgba(255,255,255,.15);
+
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+
+      width: 16px;
+      height: 16px;
+
+      border-radius: 50%;
+      background: var(--accent);
+
+      left: -2.55rem;
+      top: 8px;
+
+      box-shadow: 0 0 14px rgba(245,158,11,.7);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.35rem;
+      color: #fff;
+
+      margin-bottom: .5rem;
+    }
+
+    .timeline-item p {
+      font-size: 1rem;
+      line-height: 1.8;
+
+      max-height: 0;
+      overflow: hidden;
+      color: var(--muted);
+
+      transition: max-height .5s ease;
+    }
+
+    .timeline-item.active p {
+      max-height: 200px;
+      margin-top: .7rem;
+    }
+
+    /* GRID */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 2rem;
+    }
+
+    /* CAROUSEL */
+
+    .carousel {
+      height: 540px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1800px;
+      margin-top: 4rem;
+    }
+
+    .carousel-track {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      transform-style: preserve-3d;
+      animation: spin 26s linear infinite;
+    }
+
+    .carousel-item {
+      position: absolute;
+
+      width: 220px;
+      height: 290px;
+
+      left: 50%;
+      top: 50%;
+
+      margin-left: -110px;
+      margin-top: -145px;
+
+      border-radius: 24px;
+      padding: 1.5rem;
+
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+
+      backdrop-filter: blur(14px);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      cursor: pointer;
+
+      transition:
+        transform .4s ease,
+        background .4s ease;
+    }
+
+    .carousel-item:hover {
+      background: rgba(255,255,255,.15);
+      transform: scale(1.05);
+    }
+
+    .carousel-item h3 {
+      margin-bottom: .6rem;
+      font-size: 1.3rem;
+    }
+
+    .carousel-item p {
+      color: var(--muted);
+    }
+
+    /* QUOTE */
+
+    .quote {
+      margin-top: 5rem;
+
+      padding: 3rem;
+
+      border-radius: var(--radius);
+
+      text-align: center;
+      font-size: 1.4rem;
+      font-style: italic;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(245,158,11,.15),
+          rgba(56,189,248,.15)
+        );
+
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+
+      background: rgba(0,0,0,.8);
+      backdrop-filter: blur(8px);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition: .35s ease;
+
+      z-index: 1000;
+    }
+
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      width: min(92%, 700px);
+      max-height: 80vh;
+      overflow-y: auto;
+
+      background: #0f172a;
+      border: 1px solid rgba(255,255,255,.12);
+
+      border-radius: 24px;
+
+      padding: 2rem;
+
+      transform: translateY(30px);
+      transition: .35s ease;
+    }
+
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-content h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .modal-content p {
+      margin-bottom: 1rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    /* REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes spin {
+      from {
+        transform: rotateX(-10deg) rotateY(0deg);
+      }
+      to {
+        transform: rotateX(-10deg) rotateY(360deg);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 768px) {
+
+      nav {
+        border-radius: 24px;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 80px;
+        left: 0;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        background: rgba(15,23,42,.98);
+
+        padding: 1rem;
+
+        border-radius: 24px;
+
+        opacity: 0;
+        pointer-events: none;
+
+        transform: translateY(-10px);
+
+        transition: .3s ease;
+      }
+
+      nav.active ul {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      #menuToggle {
+        display: block;
+      }
+
+      .carousel {
+        height: 450px;
+      }
+
+      .carousel-item {
+        width: 180px;
+        height: 240px;
+
+        margin-left: -90px;
+        margin-top: -120px;
+      }
+
+      section {
+        padding: 5rem 6%;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar">
+
+    <div class="logo">Pagliarani</div>
+
+    <span id="menuToggle">☰</span>
+
+    <ul>
+      <li><a href="#vita">Vita</a></li>
+      <li><a href="#poetica">Poetica</a></li>
+      <li><a href="#opere">Opere</a></li>
+      <li><a href="#citazione">Citazione</a></li>
+    </ul>
+
+  </nav>
+
+  <header>
+
+    <div class="hero">
+
+      <h1>Elio Pagliarani</h1>
+
+      <p>
+        Poeta della Neoavanguardia italiana, interprete della modernità urbana,
+        della frammentazione linguistica e della realtà industriale del Novecento.
+      </p>
+
+      <a href="#vita" class="btn">Esplora</a>
+
+    </div>
+
+  </header>
+
+  <section id="vita">
+
+    <h2 class="section-title reveal">La Vita</h2>
+
+    <div class="grid" style="margin-bottom:4rem; align-items:center;">
+
+      <div class="card reveal">
+
+        <h3 style="margin-bottom:1rem;">Una figura centrale del Novecento</h3>
+
+        <p>
+          Elio Pagliarani è stato uno dei più importanti poeti italiani del secondo Novecento.
+          La sua opera attraversa poesia, critica letteraria, giornalismo e sperimentazione linguistica.
+        </p>
+
+        <p style="margin-top:1rem;">
+          Attraverso uno stile innovativo, ha raccontato la trasformazione dell’Italia industriale,
+          la vita urbana e il cambiamento sociale del dopoguerra.
+        </p>
+
+      </div>
+
+      <div class="reveal">
+        <img
+          src="https://ilromagnolo.info/wp-content/uploads/2021/06/Elio-Pagliarani.jpg"
+          alt="Macchina da scrivere vintage"
+          style="
+            width:100%;
+            border-radius:28px;
+            object-fit:cover;
+            min-height:340px;
+            box-shadow: var(--shadow);
+            border:1px solid rgba(255,255,255,.1);
+          "
+        >
+      </div>
+
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <h3>1927 – Le origini</h3>
+        <p>
+          Nasce a Viserba di Rimini il 25 maggio 1927.
+          Fin da giovane sviluppa interesse per la letteratura,
+          il teatro e il linguaggio contemporaneo.
+        </p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <h3>Milano e la formazione</h3>
+        <p>
+          Negli anni del boom economico si trasferisce a Milano,
+          città che diventa protagonista della sua poesia.
+          Qui osserva il mondo industriale, gli uffici,
+          il traffico urbano e la nascita della società moderna.
+        </p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <h3>Il Gruppo 63</h3>
+        <p>
+          Partecipa al Gruppo 63 insieme ad autori come Edoardo Sanguineti,
+          Umberto Eco e Nanni Balestrini.
+          Il movimento rivoluziona il linguaggio letterario italiano.
+        </p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <h3>2012 – Roma</h3>
+        <p>
+          Muore a Roma nel 2012.
+          La sua poesia continua a essere studiata come una delle esperienze
+          più innovative e radicali della letteratura italiana contemporanea.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="grid" style="margin-top:4rem;">
+
+      <div class="reveal">
+        <img
+          src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop"
+          alt="Libri e poesia"
+          style="
+            width:100%;
+            height:320px;
+            object-fit:cover;
+            border-radius:24px;
+            box-shadow: var(--shadow);
+          "
+        >
+      </div>
+
+      <div class="card reveal">
+
+        <h3 style="margin-bottom:1rem;">Una poesia della realtà</h3>
+
+        <p>
+          Pagliarani porta nella poesia il linguaggio tecnico,
+          il parlato quotidiano e la frammentazione della vita moderna.
+        </p>
+
+        <p style="margin-top:1rem;">
+          Le sue opere raccontano il rapporto tra individuo e società,
+          tra modernità e alienazione urbana.
+        </p>
+
+      </div>
+
+    </div>
+
+    </div>
+
+  </section>
+
+  <section id="poetica">
+
+    <div class="quote reveal">
+      “La realtà moderna entra nella poesia con le sue fabbriche, i suoi uffici,
+      le sue voci quotidiane e il linguaggio tecnico della società industriale.”
+    </div>
+
+    <h2 class="section-title reveal">La Poetica</h2>
+
+    <div class="grid">
+
+      <div class="card reveal">
+        <h3>Neoavanguardia</h3>
+        <p>
+          Pagliarani è una delle figure centrali del Gruppo 63, movimento che rivoluziona
+          la letteratura italiana opponendosi ai modelli tradizionali del dopoguerra.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>Sperimentalismo</h3>
+        <p>
+          Pagliarani rompe le strutture poetiche tradizionali attraverso montaggi linguistici e registri differenti.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>Città e modernità</h3>
+        <p>
+          La Milano industriale diventa simbolo della trasformazione sociale italiana.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>Lingua viva</h3>
+        <p>
+          La poesia incorpora dialoghi, termini tecnici e linguaggio quotidiano.
+        </p>
+      </div>
+
+    </div>
+
+  
+
+    <div class="quote reveal">
+      La poesia di Pagliarani osserva il lavoro, la città, il capitalismo,
+      l’alienazione moderna e il linguaggio dei media.
+    </div>
+
+  </section>
+
+  <section id="gruppo63">
+
+    <h2 class="section-title reveal">Il Gruppo 63</h2>
+
+    <div class="grid">
+
+      <div class="card reveal">
+        <h3>Un nuovo linguaggio</h3>
+        <p>
+          Il Gruppo 63 nasce a Palermo nel 1963 e riunisce scrittori, poeti e critici
+          intenzionati a sperimentare nuove forme espressive.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>Sperimentalismo radicale</h3>
+        <p>
+          Gli autori rifiutano la linearità narrativa e introducono frammentazione,
+          montaggio e contaminazione dei linguaggi.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>Pagliarani e la città</h3>
+        <p>
+          Pagliarani porta nella poesia il ritmo della metropoli moderna,
+          degli uffici e della società industriale italiana.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="opere">
+
+    <h2 class="section-title reveal">Opere Principali</h2>
+
+    <div class="carousel reveal">
+
+      <div class="carousel-track">
+
+        <div class="carousel-item opera" data-opera="carla" style="transform: rotateY(0deg) translateZ(380px);">
+          <h3>La ragazza Carla</h3>
+          <p>1960</p>
+        </div>
+
+        <div class="carousel-item opera" data-opera="fisica" style="transform: rotateY(60deg) translateZ(380px);">
+          <h3>Lezioni di fisica</h3>
+          <p>1964</p>
+        </div>
+
+        <div class="carousel-item opera" data-opera="epigrammi" style="transform: rotateY(120deg) translateZ(380px);">
+          <h3>Epigrammi ferraresi</h3>
+          <p>1974</p>
+        </div>
+
+        <div class="carousel-item opera" data-opera="inventario" style="transform: rotateY(180deg) translateZ(380px);">
+          <h3>Inventario privato</h3>
+          <p>1980</p>
+        </div>
+
+        <div class="carousel-item opera" data-opera="poesie" style="transform: rotateY(240deg) translateZ(380px);">
+          <h3>Poesie 1946–2005</h3>
+          <p>Antologia</p>
+        </div>
+
+        <div class="carousel-item opera" data-opera="rudi" style="transform: rotateY(300deg) translateZ(380px);">
+          <h3>La ballata di Rudi</h3>
+          <p>1995</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="quote reveal" id="citazione">
+      “La poesia non deve consolare, deve conoscere.”
+    </div>
+
+    <div class="grid" style="margin-top:4rem;">
+
+      <div class="card reveal">
+        <h3>La ragazza Carla</h3>
+        <p>
+          L’opera racconta la vita di una giovane impiegata milanese durante il boom economico.
+          È considerata uno dei capolavori della poesia italiana contemporanea.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>Temi principali</h3>
+        <p>
+          Alienazione urbana, lavoro impiegatizio, trasformazione sociale,
+          consumismo e crisi dell’identità moderna.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>Stile poetico</h3>
+        <p>
+          Pagliarani utilizza registri linguistici differenti:
+          poesia lirica, dialoghi, linguaggio tecnico e parlato quotidiano.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <footer>
+    <p>Sito dedicato a Elio Pagliarani · Design moderno ispirato alla Neoavanguardia</p>
+    <p style="margin-top:1rem; opacity:.7; font-size:.95rem;">
+      Letteratura italiana contemporanea · Gruppo 63 · Poesia sperimentale
+    </p>
+  </footer>
+
+  <script>
+
+    /* NAV */
+
+    const nav = document.getElementById('navbar');
+    const toggle = document.getElementById('menuToggle');
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+
+    /* TIMELINE */
+
+    document.querySelectorAll('.timeline-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+
+    /* OPERE */
+
+    const opere = {
+
+      carla: {
+        titolo: 'La ragazza Carla',
+        descrizione: 'Poema narrativo ambientato nella Milano industriale del boom economico.',
+        estratto: '«Carla Dondi, diciassette anni...»'
+      },
+
+      fisica: {
+        titolo: 'Lezioni di fisica',
+        descrizione: 'Incontro tra linguaggio scientifico e riflessione sociale.',
+        estratto: '«La forza è uguale alla massa...»'
+      },
+
+      epigrammi: {
+        titolo: 'Epigrammi ferraresi',
+        descrizione: 'Composizioni ironiche e critiche sulla realtà contemporanea.',
+        estratto: '«Ferrara, città di nebbie...»'
+      },
+
+      inventario: {
+        titolo: 'Inventario privato',
+        descrizione: 'Memoria personale e frammenti autobiografici.',
+        estratto: '«Le cose che restano...»'
+      },
+
+      poesie: {
+        titolo: 'Poesie 1946–2005',
+        descrizione: 'Ampia raccolta della produzione poetica dell’autore.',
+        estratto: '«Il verso nasce...»'
+      },
+
+      rudi: {
+        titolo: 'La ballata di Rudi',
+        descrizione: 'Opera narrativa e sperimentale.',
+        estratto: '«Rudi correva...»'
+      }
+
+    };
+
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+
+    document.querySelectorAll('.opera').forEach(card => {
+
+      card.addEventListener('click', () => {
+
+        const key = card.dataset.opera;
+        const opera = opere[key];
+
+        modalContent.innerHTML = `
+          <h2>${opera.titolo}</h2>
+          <p>${opera.descrizione}</p>
+          <p><em>${opera.estratto}</em></p>
+          <button class="btn" id="closeModal">Chiudi</button>
+        `;
+
+        modal.classList.add('active');
+
+        document.getElementById('closeModal')
+          .addEventListener('click', () => {
+            modal.classList.remove('active');
+          });
+
+      });
+
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        modal.classList.remove('active');
+      }
+    });
+
+    /* REVEAL OBSERVER */
+
+    const observer = new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+
+      });
+
+    }, {
+      threshold: 0.15
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+  </script>
+
+</body>
+</html>
